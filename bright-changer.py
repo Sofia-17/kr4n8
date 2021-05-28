@@ -1,12 +1,12 @@
 """Программа должна загрузить изображения из графических файлов InputFile1, 
-InputFile2(считается, что файлы имеют одинаковые размеры), изменить яркость 
+InputFile2 (считается, что файлы имеют одинаковые размеры), изменить яркость 
 всех пикселов первого изображения так, чтобы она была бы равна яркости пикселов 
 второго изображения и вывести получившееся изображение в графический файл OutputFile."""
 import random
 from PIL import Image, ImageDraw  
  
-image = Image.open("arni.bmp") 
-image2 =  Image.open("stallone.bmp") 
+image = Image.open("first.bmp")
+image2 =  Image.open("second.bmp")
 draw = ImageDraw.Draw(image)  
 width = image.size[0]  
 height = image.size[1]  
@@ -21,21 +21,21 @@ factor=0
 factor1=0
 for i in range(w):
 	for j in range(h):
-		a = pix2[i, j][0] #stallone 
+		a = pix2[i, j][0] 
 		b = pix2[i, j][1] 
 		c = pix2[i, j][2]
-		factor += (a+b+c)//3
-		a1 = pix[i, j][0] #arni 
+		factor = (a+b+c)//3
+		a1 = pix[i, j][0]  
 		b1 = pix[i, j][1] 
 		c1 = pix[i, j][2] 
-		factor1 += (a1+b1+c1)//3
-print("brightness of pic1: ",factor1)
-print("brightness of pic2: ",factor)
-for i in range(w):
-	for j in range(h):
-		a1 = pix[i, j][0] + (factor - factor1)//(w*h)
-		b1 = pix[i, j][1] + (factor - factor1)//(w*h)
-		c1 = pix[i, j][2] + (factor - factor1)//(w*h)
+		factor1 = (a1+b1+c1)//3
+		print("brightness of pic1: ",factor1)
+		print("brightness of pic2: ",factor)
+#for i in range(w):
+#	for j in range(h):
+		a1 = pix[i, j][0] + (factor - factor1)
+		b1 = pix[i, j][1] + (factor - factor1)
+		c1 = pix[i, j][2] + (factor - factor1)
 		if (a1 < 0):
 			a1 = 0
 		if (b1 < 0):
